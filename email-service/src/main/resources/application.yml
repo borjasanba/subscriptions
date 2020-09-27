@@ -1,0 +1,16 @@
+spring:
+  application.name: adidas-email-service
+  profiles.active: ${ENV:local}
+  #KAFKA
+  cloud.stream:
+    bindings:
+      adidas_subscription_source:
+        destination: adidas_subscription
+
+    kafka.streams:
+      binder.configuration:
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+      bindings:
+        adidas_subscription_source.consumer:
+          application-id: adidas-subscription-email-consumer

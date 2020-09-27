@@ -1,0 +1,61 @@
+openapi: 3.0.1
+info:
+  title: Subscription Internal Servie API
+  description: Subscription Internal API reference for developers
+  version: 0.0.1
+paths:
+  /api/subscription:
+    post:
+      tags:
+        - subscription
+      summary: add a new subscription
+      operationId: createSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/subscriptionDTO'
+      responses:
+        200:
+          description: Subscription added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/subscriptionId'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+components:
+  schemas:
+    subscriptionDTO:
+      type: object
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        gender:
+          type: string
+          enum:
+            - Female
+            - Male
+            - Non-binary
+            - Transgender
+            - Intersex
+            - Prefer not to say
+        dateOfBirth:
+          type: string
+          format: date
+        consent:
+          type: boolean
+      required:
+        - email
+        - dateOfBirth
+        - consent
+    subscriptionId:
+      type: object
+      properties:
+        id:
+          type: string

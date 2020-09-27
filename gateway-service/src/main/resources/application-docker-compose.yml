@@ -1,0 +1,6 @@
+management.endpoint.health.show-details: always
+
+#GATEWAY
+subscription-service:
+  ribbon:
+    listOfServers: subscription:8081/api/subscription

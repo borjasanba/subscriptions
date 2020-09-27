@@ -1,0 +1,3 @@
+spring:
+  application.name: adidas-subscription-service
+  profiles.active: ${ENV:local}
